@@ -1,5 +1,11 @@
 # laravel-api-example
 
+
+https://paiza.cloud/
+
+
+
+```php
         $schedule->call(function () {
             Log::debug("Iniciando calculo de estoque");
             $pedidos = Pedido::with(['produtos'])->where('status', 0)->get();
@@ -13,3 +19,4 @@
             }
             
         })->everyMinute();
+```
