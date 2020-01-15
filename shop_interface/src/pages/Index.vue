@@ -29,6 +29,8 @@
 
 <script>
 const API_URL = 'http://localhost:8000/api'
+// axios.defaults.headers.common['Authorization'] = 'Bearer test';
+
 export default {
   name: 'PageIndex',
   data () {
