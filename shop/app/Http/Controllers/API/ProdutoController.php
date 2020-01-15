@@ -7,8 +7,13 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use App\Produto;
 use Validator;
 use Log;
+use App\Http\Resources\Produto as ProdutoResource;
+use App\Http\Resources\ProdutoCollection as ProdutoCollectionResource;
 class ProdutoController extends BaseController
 {
+    public function historico($id) {
+        return Produto::findOrFail($id)->audits;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +21,9 @@ class ProdutoController extends BaseController
      */
     public function index()
     {
-        Log::debug("Cheguei");
         $products = Produto::all();
     
-        return $products;
+        return new ProdutoCollectionResource($products);
     }
     /**
      * Store a newly created resource in storage.
@@ -45,7 +49,7 @@ class ProdutoController extends BaseController
    
         $product = Produto::create($input);
    
-        return $this->sendResponse($product, 201);
+        return $this->sendResponse(new ProdutoResource($product), 201);
     } 
    
     /**
@@ -62,7 +66,7 @@ class ProdutoController extends BaseController
             return $this->sendError('Product not found.');
         }
    
-        return $this->sendResponse($product, 200);
+        return $this->sendResponse(new ProdutoResource($product), 200);
     }
     
     /**
@@ -87,11 +91,9 @@ class ProdutoController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());       
         }
-        $product = Produto::findOrFail($id);
-        $product->update($request->all());
-        $product->save();
-   
-        return $this->sendResponse($product, 200);
+        Produto::find($id)->update($request->all());
+        
+        return $this->sendResponse(new ProdutoResource(Produto::findOrFail($id)), 200);
     }
    
     /**
