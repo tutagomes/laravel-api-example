@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
+        /* $schedule->call(function () {
             Log::debug("Iniciando calculo de estoque");
             $pedidos = Pedido::with(['produtos'])->where('status', 0)->get();
             foreach($pedidos as $ped) {
@@ -38,7 +38,7 @@ class Kernel extends ConsoleKernel
                 $ped->save();
             }
             
-        })->cron('* * * * *');
+        })->cron('* * * * *'); */
     }
 
     /**
