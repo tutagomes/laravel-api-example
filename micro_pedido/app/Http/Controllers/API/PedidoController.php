@@ -47,7 +47,14 @@ class PedidoController extends BaseController
         $pedido->status = 0;
         $pedido->user_id = $input['user_id'];
         $pedido->save();
-        $pedido->produtos()->sync($input['produtos']);
+        foreach($input['produtos'] as $pdt) {
+            Log::debug($pdt);
+            $produto = new Produto;
+            $produto->produto_id = $pdt['produto_id'];
+            $produto->quantity = $pdt['quantity'];
+            $produto->pedido_id = $pedido->id;
+            $produto->save();
+        }
         $pedido->save();
         return $this->sendResponse(new PedidoResource($pedido), 201);
     } 

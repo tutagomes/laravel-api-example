@@ -1,14 +1,19 @@
 # laravel-api-example
 
-
 https://paiza.cloud/
+
+![image-20200117012913874](assets/image-20200117012913874.png)
 
 Começando:
 
-```
-git clone https://github.com/tutagomes/laravel-api-example.git
+Abra dois terminais, no primeiro executando:
 
 ```
+git clone https://github.com/tutagomes/laravel-api-example.git
+redis-server
+```
+
+E no segundo:
 
 ``` 
 cd shop
@@ -35,5 +40,5 @@ composer install
 cd ..
 cd micro_pedido
 composer install
-
 ```
+
