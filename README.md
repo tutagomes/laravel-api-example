@@ -3,20 +3,36 @@
 
 https://paiza.cloud/
 
+Começando:
 
+```
+git clone https://github.com/tutagomes/laravel-api-example.git
 
-```php
-        $schedule->call(function () {
-            Log::debug("Iniciando calculo de estoque");
-            $pedidos = Pedido::with(['produtos'])->where('status', 0)->get();
-            foreach($pedidos as $ped) {
-                foreach($ped->produtos as $pdt) {
-                    $pdt->inventory -= $pdt->pivot->quantity;
-                    $pdt->save();
-                }
-                $ped->status = 1;
-                $ped->save();
-            }
-            
-        })->everyMinute();
+```
+
+``` 
+cd shop
+composer install
+
+cd ..
+cd shop_interface
+npm install -g @quasar/cli
+npm install
+
+cd ..
+cd micro_produto
+composer install
+
+cd ..
+cd micro_auth
+composer install
+
+cd ..
+cd micro_gateway
+composer install
+
+cd ..
+cd micro_pedido
+composer install
+
 ```
