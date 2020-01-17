@@ -26,6 +26,7 @@ composer install
 cd ..
 cd micro_auth
 composer install
+php artisan passport:install
 
 cd ..
 cd micro_gateway

@@ -6,21 +6,25 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const helmet = require('helmet');
  
-const auth = httpProxy('http://localhost:3001');
-const productsServiceProxy = httpProxy('http://localhost:3002');
+const auth = httpProxy('http://localhost:8000');
+const productsServiceProxy = httpProxy('http://localhost:8000/api/produtos');
+const orderServiceProxy = httpProxy('http://localhost:8002/api/pedidos');
 
 const port = 3000;
 
 // Proxy request
-app.get('/auth', (req, res, next) => {
+app.all('/api/auth', (req, res, next) => {
   userServiceProxy(req, res, next);
 })
  
-app.get('/produtos', (req, res, next) => {
+app.all('/api/produtos', (req, res, next) => {
   productsServiceProxy(req, res, next);
 })
 
-app.get
+app.all('/api/pedidos', (req, res, next) => {
+  orderServiceProxy(req, res, next);
+})
+
 app.use(logger('dev'));
 app.use(helmet());
 app.use(express.json());
