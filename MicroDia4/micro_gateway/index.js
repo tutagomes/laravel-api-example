@@ -5,32 +5,45 @@ const app = express()
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const helmet = require('helmet');
- 
-const auth = httpProxy('http://localhost:8000');
-const productsServiceProxy = httpProxy('http://localhost:8000/api/produtos');
-const orderServiceProxy = httpProxy('http://localhost:8002/api/pedidos');
+const cors = require("cors");
 
-const port = 3000;
+const userServiceProxy = httpProxy(process.env.USER_API ? process.env.USER_API : 'http://localhost:8000');
+const placesServiceProxy = httpProxy(process.env.LUGAR_API ? process.env.LUGAR_API : 'http://localhost:8001');
+const ratingServiceProxy = httpProxy(process.env.AVALIACAO_API ? process.env.AVALIACAO_API : 'http://localhost:8002');
+
+const port = 9000;
+
 
 // Proxy request
-app.all('/api/auth', (req, res, next) => {
+app.all('/api/users', (req, res, next) => {
+  userServiceProxy(req, res, next);
+})
+app.all('/api/users/*', (req, res, next) => {
   userServiceProxy(req, res, next);
 })
  
-app.all('/api/produtos', (req, res, next) => {
-  productsServiceProxy(req, res, next);
+app.all('/api/lugares', (req, res, next) => {
+  placesServiceProxy(req, res, next);
+})
+app.all('/api/lugares/*', (req, res, next) => {
+  placesServiceProxy(req, res, next);
 })
 
-app.all('/api/pedidos', (req, res, next) => {
-  orderServiceProxy(req, res, next);
+app.all('/api/avaliacoes', (req, res, next) => {
+  ratingServiceProxy(req, res, next);
 })
+app.all('/api/avaliacoes/*', (req, res, next) => {
+  ratingServiceProxy(req, res, next);
+})
+
 
 app.use(logger('dev'));
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
- 
+app.use(cors());
+
 var server = http.createServer(app);
 server.listen(port);
 console.log('Escutando na porta: ' + port);
