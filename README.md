@@ -1,3 +1,29 @@
+Vamos criar um microsserviço para hospedar um aluguel de locais com reviews de usuário.
+
+
+
+![UniVago](assets/UniVago.png)
+
+
+
+
+
+E para isso, vamos utilizar o lumen!
+
+![image-20200121180004144](assets/image-20200121180004144.png)
+
+https://lumen.laravel.com/docs/6.x/database
+
+
+
+
+
+
+
+
+
+
+
 # laravel-api-example
 
 https://paiza.cloud/
