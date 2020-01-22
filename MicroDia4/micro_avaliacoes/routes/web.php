@@ -14,3 +14,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('avaliacoes', ['uses' => 'AvaliacoesController@index']);
+    $router->get('avaliacoes/{id}', ['uses' => 'AvaliacoesController@show']);
+    $router->post('avaliacoes', ['uses' => 'AvaliacoesController@store']);
+    $router->put('avaliacoes/{id}', ['uses' => 'AvaliacoesController@update']);
+    $router->delete('avaliacoes{id}', ['uses' => 'AvaliacoesController@destroy']);
+});
