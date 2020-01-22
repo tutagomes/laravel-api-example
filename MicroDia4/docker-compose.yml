@@ -27,6 +27,10 @@ services:
       AVALIACAO_API: 'http://avaliacoes'
     ports:
       - 9000:9000
+
+  redis:
+    image: redis
+    command: redis-server
   
   lugares:
     build:
