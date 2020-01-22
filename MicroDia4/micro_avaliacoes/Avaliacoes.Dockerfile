@@ -25,7 +25,7 @@ COPY --from=vendor /app/vendor/ /var/www/html/vendor/
 WORKDIR /var/www/html
 ENV DB_DATABASE /var/www/html/database.sqlite
 #Remove banco se existir
-RUN rm database.sqlite
+RUN rm database.sqlite || true
 #Adiciona banco
 RUN touch database.sqlite
 
