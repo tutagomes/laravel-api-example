@@ -1,0 +1,39 @@
+version: '3'
+services:
+  avaliacoes:
+    build:
+      dockerfile: Avaliacoes.Dockerfile
+      context: ./micro_avaliacoes
+    environment:
+      USER_API: 'http://auth'
+      LUGAR_API: 'http://lugares'
+      REDIS_CLIENT: 'predis'
+      REDIS_HOST: 'redis'
+
+  auth:
+    build:
+      dockerfile: Auth.Dockerfile
+      context: ./micro_auth
+
+  gateway:
+    build:
+      dockerfile: Gateway.Dockerfile
+      context: ./micro_gateway
+    environment:
+      USER_API: 'http://auth'
+      LUGAR_API: 'http://lugares'
+      REDIS_CLIENT: 'predis'
+      REDIS_HOST: 'redis'
+      AVALIACAO_API: 'http://avaliacoes'
+    ports:
+      - 9000:9000
+  
+  lugares:
+    build:
+      dockerfile: Lugares.Dockerfile
+      context: ./micro_lugares
+    environment:
+      USER_API: 'http://auth'
+      LUGAR_API: 'http://lugares'
+      REDIS_CLIENT: 'predis'
+      REDIS_HOST: 'redis'
