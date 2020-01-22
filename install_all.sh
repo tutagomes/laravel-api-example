@@ -18,3 +18,8 @@ cd ..
 cd micro_lugares
 touch database.sqlite
 composer install
+
+cd ..
+cd interface
+npm install -g @quasar/cli
+npm install
