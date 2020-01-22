@@ -13,6 +13,7 @@ const ratingServiceProxy = httpProxy(process.env.AVALIACAO_API ? process.env.AVA
 
 const port = 9000;
 
+app.use(cors());
 
 // Proxy request
 app.all('/api/users', (req, res, next) => {
@@ -42,7 +43,6 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
 
 var server = http.createServer(app);
 server.listen(port);
