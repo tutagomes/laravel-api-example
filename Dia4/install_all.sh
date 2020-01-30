@@ -1,3 +1,8 @@
+rm -rf Dia*
+rm -rf assets
+rm -rf shop
+rm -rf shop_interface
+
 cd MicroDia4
 
 cd micro_auth
