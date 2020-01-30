@@ -39,7 +39,8 @@ class ProdutoController extends BaseController
             'title' => 'required',
             'short_description' => 'required',
           	'long_description' => 'required',
-          	'price' => 'required',
+            'price' => 'required',
+            'discount' => 'required',  
           	'inventory' => 'required'
         ]);
    
@@ -84,7 +85,8 @@ class ProdutoController extends BaseController
             'title' => 'required',
             'short_description' => 'required',
           	'long_description' => 'required',
-          	'price' => 'required',
+              'price' => 'required',
+              'discount' => 'required',
           	'inventory' => 'required'
         ]);
    

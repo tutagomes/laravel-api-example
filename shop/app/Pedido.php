@@ -27,4 +27,12 @@ class Pedido extends Model
         }
         return $total;
     }
+    public function economiaDe () {
+        $total = $this->total();
+        $semDesconto = 0;
+        foreach ($this->produtos as $produto) {
+            $semDesconto += $produto->price * $produto->pivot->quantity;
+        }
+        return $semDesconto - $total;
+    }
 }
