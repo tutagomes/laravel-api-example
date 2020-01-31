@@ -2,10 +2,13 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
-
+use Tests\TestCase;
+use App\Produto;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      *
@@ -13,6 +16,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $pdt = factory(Produto::class)->create();
+        $pdt = Produto::first();
+        $this->assertEquals($pdt->id, 1);
+
+        factory(Produto::class)->create();
+        $produtos = Produto::all();
+        $this->assertEquals(count($produtos), 2);
     }
 }
