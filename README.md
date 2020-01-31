@@ -1,72 +1,15 @@
-Vamos criar um microsserviço para hospedar um aluguel de locais com reviews de usuário.
+Guten Morgen!
 
+Hoje vamos criar templates Blade para demonstrar dados de forma mais visual (sem depender de APIs e interfaces assíncronas) e implementar pequenos testes de unidade e tela utilizando Dusk.
 
-
-![UniVago](assets/UniVago.png)
-
-
-
-
-
-E para isso, vamos utilizar o lumen!
-
-![image-20200121180004144](assets/image-20200121180004144.png)
-
-https://lumen.laravel.com/docs/6.x/database
-
-
-
-
-
-
-
-
-
-
-
-# laravel-api-example
-
-https://paiza.cloud/
-
-![image-20200117012913874](assets/image-20200117012913874.png)
-
-Começando:
-
-Abra dois terminais, no primeiro executando:
-
-```
+Para começar, vamos criar uma máquina virtual no Paiza Cloud e executar os comandos:
+```sh
 git clone https://github.com/tutagomes/laravel-api-example.git
-redis-server
+
+cd  laravel-api-example/shop
+composer install
+php artisan migrate:fresh --seed
+php artisan serve --host=0.0.0.0:8000
+
 ```
-
-E no segundo:
-
-``` 
-cd shop
-composer install
-
-cd ..
-cd shop_interface
-npm install -g @quasar/cli
-npm install
-
-cd ..
-cd micro_produto
-composer install
-
-cd ..
-cd micro_auth
-composer install
-php artisan passport:install
-
-cd ..
-cd micro_gateway
-composer install
-
-cd ..
-cd micro_pedido
-composer install
-```
-
-
-
+Dessa forma, você pode acessar o endereço disponibilizado e verificar se `/api/pedidos` retorna valores válidos!
